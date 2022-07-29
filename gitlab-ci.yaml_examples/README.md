@@ -1,6 +1,6 @@
 # Example gitlab-ci.yml files
 
-Example configurations for Gitlab](https://about.gitlab.com/)'s [Security Dashboard](https://about.gitlab.com/handbook/engineering/security/security-engineering-and-research/application-security/runbooks/security-dashboard-review.html) showing various customizations.
+Example configurations for [Gitlab](https://about.gitlab.com/)'s [Security Dashboard](https://about.gitlab.com/handbook/engineering/security/security-engineering-and-research/application-security/runbooks/security-dashboard-review.html) showing various customizations.
 
 ## Security Dashboard Examples
 
