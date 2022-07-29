@@ -1,0 +1,34 @@
+stages:
+  - dast
+
+include:
+  - template: DAST.gitlab-ci.yml
+
+dast:
+  stage: dast
+  dast_configuration:
+    site_profile: "<site_profile>"
+    scanner_profile: "<scanner_profile>"
+
+  variables:
+    DAST_AUTO_UPDATE_ADDONS: "true"
+    DAST_FULL_SCAN_ENABLED: "true" # do a full scan
+
+    DAST_DEBUG: "true"
+    DAST_AUTH_REPORT: "true"
+
+    DAST_AUTH_VERIFICATION_SELECTOR: "id:frmWelcome"
+
+    # TESTING
+    #DAST_ZAP_LOG_CONFIGURATION: "logger.test.name=org.zaproxy.zap.session.CookieBasedSessionManagementHelper;logger.test.level=info;"
+    DAST_WEBSITE: "https://<dast_website>"
+    DAST_PATHS: "/<dast_path1>,/<dast_path2>,/<dast_path3>"
+
+  artifacts:
+    paths:
+      - gl-dast-debug-auth-report.html
+      - gl-dast-report.json
+
+    when: always
+  tags:
+    - gitlab-org

@@ -1,0 +1,36 @@
+stages:
+  - dast
+
+include:
+  - template: DAST.gitlab-ci.yml
+
+dast:
+  stage: dast
+
+  #before_script:
+
+  dast_configuration:
+    site_profile: "<site_profile>"
+    scanner_profile: "<scanner_profile>"
+
+  variables:
+    DAST_AUTO_UPDATE_ADDONS: "true"
+    DAST_FULL_SCAN_ENABLED: "true" # do a full scan
+
+    DAST_DEBUG: "true"
+    DAST_AUTH_REPORT: "true"
+
+    DAST_SUBMIT_FIELD: "css:button[class=internalLogin__loginAction]"
+    DAST_AUTH_VERIFICATION_SELECTOR: "css:.header-navigation__logout"
+
+    # Filtering this error message: ERROR org.zaproxy.zap.extension.anticsrf.ExtensionAntiCSRF
+    # by deactivating the following rule. Workaround. Not a solution. May want to go back at
+    # some point and get this activated if the rule is of value.
+    DAST_EXCLUDE_RULES: "20012"
+
+  artifacts:
+    paths:
+      - gl-dast-debug-auth-report.html
+    when: always
+  tags:
+    - gitlab-org

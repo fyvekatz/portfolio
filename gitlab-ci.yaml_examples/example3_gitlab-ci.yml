@@ -1,0 +1,31 @@
+stages:
+  - dast
+
+include:
+  - template: DAST.gitlab-ci.yml
+
+dast:
+  stage: dast
+  dast_configuration:
+    site_profile: "<site_profile>"
+    scanner_profile: "<scanner_profile>"
+
+  script:
+    - ls -al /app/zap/
+
+  variables:
+    DAST_AUTO_UPDATE_ADDONS: "true"
+    DAST_FULL_SCAN_ENABLED: "true"
+
+    DAST_DEBUG: "true"
+    DAST_AUTH_REPORT: "true"
+
+    DAST_AUTH_VERIFICATION_SELECTOR: "css:.header-navigation__logout"
+
+  artifacts:
+    paths:
+      - gl-dast-debug-auth-report.html
+      - gl-dast-report.json
+    when: always
+  tags:
+    - gitlab-org
