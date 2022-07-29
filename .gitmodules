@@ -1,6 +1,3 @@
-[submodule "Contrast-Gitlabs-Integration"]
-	path = Contrast-Gitlabs-Integration
-	url = git@github.com:fyvekatz/Contrast-Gitlabs-Integration.git
 [submodule "NuestroMundo"]
 	path = NuestroMundo
 	url = git@github.com:fyvekatz/NuestroMundo.git
